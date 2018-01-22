@@ -1,0 +1,14 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Insert Testing Data</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+    <form th:method="post" th:action="@{/test/insert}" th:object="${inputTestDTO}">
+        <label>Input Number of Trx Record : </label>
+        <input th:type="text" th:field="*{numberOfRecords}" />
+        <input th:type="submit" th:name="btSubmit"/>
+    </form>
+</body>
+</html>

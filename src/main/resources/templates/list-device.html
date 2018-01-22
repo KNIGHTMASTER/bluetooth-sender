@@ -1,0 +1,47 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <script src="/webjars/bootstrap/3.3.7-1/js/bootstrap.min.js"></script>
+    <title>List All Devices</title>
+    <link rel="stylesheet" href="/webjars/bootstrap/3.3.7-1/css/bootstrap.min.css" th:href="@{/webjars/bootstrap/3.3.7-1/css/bootstrap.min.css}" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+    <div th:if="${devices != null}">
+        <h1>Device list</h1>
+        <table>
+            <tr>
+                <th>Name</th>
+                <th>Mac Address</th>
+            </tr>
+            <tr th:each="device : ${devices}">
+                <td th:text="${device.name}">Name</td>
+                <td th:text="${device.macAddress}">Mac Address</td>
+            </tr>
+        </table>
+    </div>
+
+    <form th:method="post" th:action="@{/scan}">
+        <input th:type="submit" th:value="Scan" th:name="btSubmit" class="btn btn-primary"/>
+    </form>
+
+    <br />
+
+    <form th:method="get" th:action="@{/display-send}">
+        <input th:type="submit" th:value="Display-Send" th:name="submit" class="btn btn-primary"/>
+    </form>
+
+    <br />
+
+    <form th:method="get" th:action="@{/runcommand}">
+        <input th:type="submit" th:value="Run-Command" class="btn btn-primary"/>
+    </form>
+
+    <br />
+
+    <form th:method="get" th:action="@{/runcommand2}">
+        <input th:type="submit" th:value="Run-Command-2" class="btn btn-primary"/>
+    </form>
+
+</body>
+</html>
