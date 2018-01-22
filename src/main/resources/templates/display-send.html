@@ -1,18 +1,36 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <script src="/webjars/bootstrap/3.3.7-1/js/bootstrap.min.js"></script>
+    <script th:src="@{/webjars/jquery/3.2.1/jquery.min.js}"></script>
     <title>List All Devices</title>
     <link rel="stylesheet" th:href="@{/webjars/bootstrap/3.3.7-1/css/bootstrap.min.css}" />
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+    <script type="text/javascript">
+        $(function(){
+            $('#fiad').change( function(event) {
+                var tmppath = URL.createObjectURL(event.target.files[0]);
+//                $("filepath").fadeIn("fast").attr('src',tmppath);
+                $("#filepath").val(tmppath);
+            });
+        });
+    </script>
 </head>
 <body>
     <div th:if="${sendDTO != null}">
         <form th:method="post" th:action="@{/send}" th:object="${sendDTO}">
-            <label>Input Mac Address : </label>
-            <input type="text" th:field="*{macAddress}"/>
-            <label>Input File Path : </label>
-            <input type="file" th:field="*{filePath}"/>
+            <label>
+                Input Mac Address :
+                <input type="text" th:field="*{macAddress}"/>
+            </label>
+
+            <label>
+                Input File Path :
+                <input type="file" id="fiad"/>
+            </label>
+
+            <input type="hidden" id="filepath" th:field="*{filePath}" />
+
             <input th:type="submit" th:name="btSubmit"/>
         </form>
     </div>

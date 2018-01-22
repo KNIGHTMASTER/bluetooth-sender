@@ -50,7 +50,7 @@ public class ScanController {
     @PostMapping("/send")
     public String sendFile(@ModelAttribute SendDTO p_SendDTO) {
         LOGGER.info("Send Data "+p_SendDTO.toString());
-        runtimeExecutor.executeCommand("obexftp -b "+p_SendDTO.getMacAddress()+" -p "+"/home/fauzi/"+p_SendDTO.getFilePath()+"");
+        runtimeExecutor.executeCommand("obexftp -b "+p_SendDTO.getMacAddress()+" -p "+p_SendDTO.getFilePath());
         return "list-device";
     }
 
